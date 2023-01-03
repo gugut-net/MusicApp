@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MusicApp</string>
+    <string name="book_search_btn">Search</string>
+    <string name="pop">pop</string>
+    <string name="rock">rock</string>
+    <string name="rap">rap</string>
+    <string name="classic">classic</string>
+    <string name="forward_button">Button</string>
+    <string name="rewind_button">Button</string>
+    <string name="play_button">Button</string>
+    <string name="artist_name">Artist Name</string>
+    <string name="rnb">rnb</string>
+    <string-array name="music_genre" >
+        <item>
+
+        </item> <item>
+
+        </item> <item>
+
+        </item>
+    </string-array>
+    <string-array name="music_title" >
+        <item>
+
+        </item> <item>
+
+        </item> <item>
+
+        </item>
+    </string-array>
+</resources>

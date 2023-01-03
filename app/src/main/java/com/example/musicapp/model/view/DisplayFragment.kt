@@ -1,0 +1,97 @@
+package com.example.musicapp.model.view
+
+import android.content.ContentValues.TAG
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.musicapp.databinding.DisplayFragmentBinding
+import com.example.musicapp.model.MusicResponse
+import com.example.musicapp.model.remote.Network
+import com.example.musicapp.model.view.adapter.MusicsAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DisplayFragment : Fragment() {
+    companion object {
+        const val EXTRA_MUSIC = "EXTRA_MUSIC"
+        const val EXTRA_FILTER = "EXTRA_FILTER"
+        const val EXTRA_TYPE = "EXTRA_TYPE"
+
+        fun newInstance(
+            musicTitle: String
+        ) = DisplayFragment().apply {
+            arguments = Bundle().apply {
+                putString(EXTRA_MUSIC, musicTitle)
+//                putString(EXTRA_FILTER, musicFilter)
+//                putString(EXTRA_TYPE, musicType)
+            }
+        }
+    }
+    private lateinit var binding: DisplayFragmentBinding
+    private lateinit var musicTitle: String
+    private val adapter: MusicsAdapter by lazy {
+        MusicsAdapter(mutableListOf())
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+         super.onCreateView(inflater, container, savedInstanceState)
+        binding = DisplayFragmentBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+        arguments?.let {
+            musicTitle = it.getString(EXTRA_MUSIC) ?: " "
+
+            getMusicsData(musicTitle)
+        }
+        initViews()
+        return binding.root
+    }
+
+    private fun getMusicsData(musicTitle: String) {
+        Log.d(TAG, "getMusicsData: ")
+        Network().api
+            .getNextMusicPage(musicTitle)
+            .enqueue(
+                object : Callback<MusicResponse> {
+                    override fun onResponse(
+                        call: Call<MusicResponse>,
+                        response: Response<MusicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            response.body()?.let {
+                                updateAdapter(it)
+                            }
+                        }else {
+                            Log.d(TAG, "onResponse: : ${response.message()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MusicResponse>, t: Throwable) {
+                        Log.d(TAG, "onFailure: ${t.message}")
+                        t.printStackTrace()
+                    }
+                }
+            )
+    }
+    private fun initViews() {
+        binding.apply {
+            musicListResult.layoutManager = GridLayoutManager(context, 1)
+            musicListResult.adapter = adapter
+
+        }
+    }
+    private fun updateAdapter(dataSet: MusicResponse) {
+        adapter.updateDataSet(dataSet.results)
+    }
+}
