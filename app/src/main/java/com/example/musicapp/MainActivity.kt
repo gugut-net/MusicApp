@@ -12,7 +12,6 @@ import com.example.musicapp.model.view.DisplayFragment
 import com.example.musicapp.model.view.SearchFragment
 import com.example.musicapp.model.view.adapter.MusicsAdapter
 
-
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), Communicator {
@@ -20,14 +19,9 @@ class MainActivity : AppCompatActivity(), Communicator {
     private lateinit var musicList: RecyclerView
     private lateinit var adapter: MusicsAdapter
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
         /**
          * Hides action bar
@@ -37,8 +31,6 @@ class MainActivity : AppCompatActivity(), Communicator {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_search, SearchFragment())
             .commit()
-
-
 
     }
 
