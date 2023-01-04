@@ -9,5 +9,6 @@ data class Music(
     val artistName: String,
     val collectionName: String,
     val trackName: String,
-    val artworkUrl100: String
+    val artworkUrl100: String,
+    val previewUrl: String
 )
