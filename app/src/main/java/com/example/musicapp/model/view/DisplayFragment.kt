@@ -19,16 +19,13 @@ import retrofit2.Response
 class DisplayFragment : Fragment() {
     companion object {
         const val EXTRA_MUSIC = "EXTRA_MUSIC"
-        const val EXTRA_FILTER = "EXTRA_FILTER"
-        const val EXTRA_TYPE = "EXTRA_TYPE"
 
         fun newInstance(
             musicTitle: String
         ) = DisplayFragment().apply {
             arguments = Bundle().apply {
                 putString(EXTRA_MUSIC, musicTitle)
-//                putString(EXTRA_FILTER, musicFilter)
-//                putString(EXTRA_TYPE, musicType)
+
             }
         }
     }
