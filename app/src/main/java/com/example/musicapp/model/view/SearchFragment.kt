@@ -22,7 +22,7 @@ private const val TAG = "SearchFragment"
 class SearchFragment: Fragment() {
     private lateinit var binding: SearchFragmentBinding
     private lateinit var communicator: Communicator
-    lateinit var musicGender: String
+    lateinit var musicGenre: String
     lateinit var tabLayout : TabLayout
     lateinit var viewPager : ViewPager2
 
@@ -54,22 +54,28 @@ class SearchFragment: Fragment() {
             when(index){
                 0 -> {
                     tab.text = "Pop"
-
+                    tab.setIcon(R.drawable.fiddle_violin_svgrepo_com)
+                    musicGenre = tab.text.toString()
+                    sendSearchParams()
                 }
                 1 -> {
                     tab.text = "Classic"
+                    tab.setIcon(R.drawable.piano_svgrepo_com)
 
                 }
                 2 -> {
                     tab.text = "Rock"
+                    tab.setIcon(R.drawable.rock_svgrepo_com)
 
                 }
                 3 -> {
                     tab.text = "RNB"
+                    tab.setIcon(R.drawable.audio_cd_svgrepo_com)
 
                 }
                 4 -> {
                     tab.text = "JAZZ"
+                    tab.setIcon(R.drawable.jazz_jazz_svgrepo_com )
                 }
                 else -> {throw  Resources.NotFoundException("Item Not Found")}
             }
@@ -78,8 +84,8 @@ class SearchFragment: Fragment() {
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     viewPager!!.currentItem = tab.position
-                    musicGender = tab.text.toString()
-                    Log.d(TAG, "onTabSelected: $musicGender")
+                    musicGenre = tab.text.toString()
+                    Log.d(TAG, "onTabSelected: $musicGenre")
                     sendSearchParams()
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -93,6 +99,6 @@ class SearchFragment: Fragment() {
     }
 
     private fun sendSearchParams() {
-        communicator.sendDataToSearch(musicGender)
+        communicator.sendDataToSearch(musicGenre)
     }
 }

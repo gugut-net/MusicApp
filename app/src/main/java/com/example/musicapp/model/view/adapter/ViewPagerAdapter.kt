@@ -18,7 +18,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
     //create the functionality for each tab
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> { DisplayFragment()}
+            0 -> {DisplayFragment()}
             1 -> {DisplayFragment()}
             2 -> {DisplayFragment()}
             3 -> {DisplayFragment()}

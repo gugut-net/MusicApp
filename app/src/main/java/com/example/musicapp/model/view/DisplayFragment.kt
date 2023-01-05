@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapp.databinding.DisplayFragmentBinding
 import com.example.musicapp.model.MusicResponse
 import com.example.musicapp.model.remote.Network
@@ -15,6 +16,8 @@ import com.example.musicapp.model.view.adapter.MusicsAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+private const val TAG = "DisplayFragment"
 
 class DisplayFragment : Fragment() {
     companion object {
@@ -54,7 +57,6 @@ class DisplayFragment : Fragment() {
     }
 
     private fun getMusicsData(musicTitle: String) {
-        Log.d(TAG, "getMusicsData: ")
         Network().api
             .getNextMusicPage(musicTitle)
             .enqueue(
@@ -81,11 +83,16 @@ class DisplayFragment : Fragment() {
     }
     private fun initViews() {
         binding.apply {
-            musicListResult.layoutManager = GridLayoutManager(context, 1)
+            musicListResult.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             musicListResult.adapter = adapter
+
+//            musicListResult.addOnScrollListener(scrollListener)
 
         }
     }
+//    private val scrollListener = object : RecyclerView.OnScrollListener() {
+//
+//    }
     private fun updateAdapter(dataSet: MusicResponse) {
         adapter.updateDataSet(dataSet.results)
     }

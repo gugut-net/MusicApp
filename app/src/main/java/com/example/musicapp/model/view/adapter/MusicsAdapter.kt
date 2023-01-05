@@ -50,13 +50,16 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
         holder.itemAlbum.text = dataSet[position].collectionName
         holder.itemTitle.text = dataSet[position].trackName
         holder.itemView.setOnClickListener{
+
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-            try {
-                mediaPlayer.setDataSource(dataSet[position].previewUrl)
-                mediaPlayer.prepare()
-                mediaPlayer.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
+            if (!mediaPlayer.isPlaying) {
+                try {
+                    mediaPlayer.setDataSource(dataSet[position].previewUrl)
+                    mediaPlayer.prepare()
+                    mediaPlayer.start()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }
