@@ -1,12 +1,14 @@
 package com.example.musicapp.model.view.adapter
 
 
+import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicapp.DetailActivity
 import com.example.musicapp.R
 import com.example.musicapp.databinding.MusicItemLayoutBinding
 import com.example.musicapp.model.Music
@@ -49,7 +51,9 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
         holder.onBind(dataSet[position])
         holder.itemAlbum.text = dataSet[position].collectionName
         holder.itemTitle.text = dataSet[position].trackName
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener{v ->
+            val intent = Intent(v.context, DetailActivity::class.java)
+            v.context.startActivity(intent)
 
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
             if (!mediaPlayer.isPlaying) {

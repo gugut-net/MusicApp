@@ -15,5 +15,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.play_list_item)
 
+        supportActionBar?.hide()
+
     }
 }
