@@ -25,7 +25,9 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
                         musicTitleItem.text = musicItem.collectionName
                         musicAlbumItem.text = musicItem.trackName
                         musicArtisItem.text = musicItem.artistName
-                        Picasso.get().load(musicItem.artworkUrl100).resize(300,300).into(musicCoverItem)
+                        Picasso.get().load(musicItem.artworkUrl100)
+                            .resize(300,300)
+                            .into(musicCoverItem)
                     }
                 }
         val itemAlbum: TextView = binding.root.findViewById(R.id.music_album_item)

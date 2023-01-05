@@ -20,9 +20,7 @@ class DisplayFragment : Fragment() {
     companion object {
         const val EXTRA_MUSIC = "EXTRA_MUSIC"
 
-        fun newInstance(
-            musicTitle: String
-        ) = DisplayFragment().apply {
+        fun newInstance(musicTitle: String) = DisplayFragment().apply {
             arguments = Bundle().apply {
                 putString(EXTRA_MUSIC, musicTitle)
 

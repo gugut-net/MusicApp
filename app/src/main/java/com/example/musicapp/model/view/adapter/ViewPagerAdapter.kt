@@ -13,7 +13,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
     var miclase = SearchFragment()
 
     //We are going to have only 3 tabs
-    override fun getItemCount() = 4
+    override fun getItemCount() = 5
 
     //create the functionality for each tab
     override fun createFragment(position: Int): Fragment {
@@ -22,6 +22,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
             1 -> {DisplayFragment()}
             2 -> {DisplayFragment()}
             3 -> {DisplayFragment()}
+            4 -> {DisplayFragment()}
             else -> {throw Resources.NotFoundException("Item Not Found")}
         }
     }

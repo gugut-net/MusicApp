@@ -3,10 +3,7 @@ package com.example.musicapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.musicapp.model.view.Communicator
 import com.example.musicapp.model.view.DisplayFragment
 import com.example.musicapp.model.view.SearchFragment
@@ -34,10 +31,12 @@ class MainActivity : AppCompatActivity(), Communicator {
 
     }
 
-    override fun sendDataToSearch(musicTitle: String) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_display, DisplayFragment
-                    .newInstance(musicTitle))
+    override fun sendDataToSearch(
+        musicTitle: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_display,
+                DisplayFragment.newInstance(musicTitle))
                 .addToBackStack("")
                 .commit()
         }

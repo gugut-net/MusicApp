@@ -68,6 +68,9 @@ class SearchFragment: Fragment() {
                     tab.text = "RNB"
 
                 }
+                4 -> {
+                    tab.text = "JAZZ"
+                }
                 else -> {throw  Resources.NotFoundException("Item Not Found")}
             }
         }.attach()
