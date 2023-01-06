@@ -1,10 +1,7 @@
 package com.example.musicapp
 
-import android.R.attr.button
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
@@ -56,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
         val songCover = intent.getStringExtra("ALBUM_COVER")
 
         /**
-         * Media Player
+         * Media Player event
          */
         mediaPlayer = MediaPlayer()
         mediaPlayer.setDataSource(songPlay)
@@ -65,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
 
 
         /**
-         * Picasso image
+         * Picasso image event
          */
         Picasso.get()
             .load(songCover)
@@ -74,7 +71,7 @@ class DetailActivity : AppCompatActivity() {
 
 
         /**
-         * Set on click listener event on play button
+         * Set on click listener event on play and pause button
          */
         mPlayer.setOnClickListener {
             if (isPlaying) {
