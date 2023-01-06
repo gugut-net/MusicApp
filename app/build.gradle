@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.musicapp'
+    namespace 'com.example.gugutmusic'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.musicapp"
+        applicationId "com.example.gugutmusic"
         minSdk 22
         targetSdk 32
         versionCode 1
@@ -55,6 +55,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+    implementation 'com.google.android.material:material:1.7.0'
 
 
 }

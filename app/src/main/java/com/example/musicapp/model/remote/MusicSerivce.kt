@@ -7,6 +7,10 @@ import retrofit2.http.Query
 
 interface MusicService  {
 
+    /**
+     * Receive data search from Constants kotlin file
+     * Sends API information to the DisplayFragment class
+     */
     @GET(ENDPOINT)
     fun getNextMusicPage(
         @Query(PARAM_Q) musicTitle: String,

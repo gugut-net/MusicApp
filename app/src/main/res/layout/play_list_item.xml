@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AE98E6DF"
-    tools:context=".DetailActivity">
+    tools:context="com.example.musicapp.DetailActivity">
 
     <include
         android:id="@+id/app_bar"
@@ -27,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/artist_textView"
-        app:layout_constraintVertical_bias="0.743"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@drawable/ic_launcher_foreground" />
 
     <SeekBar

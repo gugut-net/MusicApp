@@ -2,22 +2,22 @@ package com.example.musicapp.model.view.adapter
 
 
 import android.content.Intent
-import android.media.AudioManager
 import android.media.MediaPlayer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gugutmusic.R
+import com.example.gugutmusic.databinding.MusicItemLayoutBinding
 import com.example.musicapp.DetailActivity
-import com.example.musicapp.R
-import com.example.musicapp.databinding.MusicItemLayoutBinding
 import com.example.musicapp.model.Music
 import com.squareup.picasso.Picasso
-
-private const val TAG = "MusicAdapter"
+import java.util.LinkedList
 
 lateinit var mediaPlayer: MediaPlayer
+
+private const val TAG = "MusicsAdapter"
 
 class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapter<MusicsAdapter.MusicViewHolder>() {
 
@@ -55,17 +55,29 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
         holder.itemAlbum.text = dataSet[position].collectionName
         holder.itemTitle.text = dataSet[position].trackName
 
+        val i = 0
+        val end = 49
+
+        val song = LinkedList<String>()
+
+        for(i in end until 50){
+            song.add(dataSet[i].artistName)
+            Log.d(TAG, "Song: ${dataSet[i].artistName}")
+        }
 
         /**
          * Set setOnClickListener
          * intent putExtra to call in DetailActivity
          */
-        holder.itemView.setOnClickListener{v ->
+        holder.itemView.setOnClickListener { v ->
             val intent = Intent(v.context, DetailActivity::class.java)
             intent.putExtra("ALBUM", holder.itemAlbum.text)
             intent.putExtra("SONG_PLAY", dataSet[position].previewUrl)
             intent.putExtra("ALBUM_COVER", dataSet[position].artworkUrl100)
             intent.putExtra("BACK_ARROW",dataSet[position].backArrow)
+            intent.putExtra("FORWARD_BUTTON", dataSet[position].forwardButton)
+            intent.putExtra("REWIND_BUTTON",dataSet[position].rewindButton)
+            intent.putExtra("LIST", song)
             v.context.startActivity(intent)
 
         }

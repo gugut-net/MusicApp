@@ -6,16 +6,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.musicapp.model.view.DisplayFragment
-import com.example.musicapp.model.view.SearchFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
-    var miclase = SearchFragment()
-
-    //We are going to have only 3 tabs
+    /**
+     * We are going to have only 5 tabs
+     */
     override fun getItemCount() = 5
 
-    //create the functionality for each tab
+    /**
+     * Create the functionality for each tab
+     * Tabs are created in SearchFragment in initView function
+     */
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> {DisplayFragment()}

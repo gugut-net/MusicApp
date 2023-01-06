@@ -11,6 +11,10 @@ class Network {
         initRetrofit().create(MusicService::class.java)
 
     }
+
+    /**
+     * Retrofit initiated
+     */
     private fun initRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -18,6 +22,10 @@ class Network {
             .client(createOkHttpClient())
             .build()
     }
+
+    /**
+     * Http client initiated
+     */
     private fun createOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC

@@ -2,10 +2,14 @@ package com.example.musicapp
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gugutmusic.R
 import com.squareup.picasso.Picasso
+import java.util.*
 
+private const val TAG = "DetailActivity"
 
 class DetailActivity : AppCompatActivity() {
 
@@ -16,7 +20,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var mPlayer: ImageButton
     private lateinit var seekBar: SeekBar
     private lateinit var backArrow: ImageButton
+    private lateinit var forwardButton: ImageButton
+    private lateinit var rewindButton: ImageButton
     private var isPlaying = true
+    val song_play = LinkedList<String>()
 
     private var int = 0
 
@@ -35,20 +42,53 @@ class DetailActivity : AppCompatActivity() {
         artist_textView = findViewById(R.id.artist_textView)
         album_imageCover = findViewById(R.id.album_imageView)
         backArrow = findViewById(R.id.back_arrow)
-//        seekBar = findViewById(R.id.seekBar)
+        forwardButton = findViewById(R.id.forward_button)
+        rewindButton = findViewById(R.id.rewind_button)
+        seekBar = findViewById(R.id.seekBar)
+
+//        val song = intent.getStringExtra("LIST")
+//
+//        for(i in 49 until 50){
+//            Log.d(TAG, "Artist: ${song}")
+//        }
 
         /**
          * Initiate onclick listener
          */
         mPlayer = findViewById(R.id.play_button)
-//        mPlayer.setOnClickListener(listener)
-//        seekBar.setOnSeekBarChangeListener(seekBar)
+
+        /**
+         *  Seekbar event progress
+         */
+        seekBar.progress
 
 
         val artist = intent.getStringExtra("ALBUM")
         artist_textView.text = artist
 
+        /**
+         * Forward button event
+         */
+        forwardButton.setOnClickListener {
+            if (!isPlaying) {
+                mediaPlayer.currentPosition
 
+            }
+        }
+
+        /**
+         * Rewind button event
+         */
+        rewindButton.setOnClickListener {
+            if (isPlaying) {
+                mediaPlayer.start()
+
+            }
+        }
+
+        /**
+         * App bar back arrow event
+         */
         backArrow.setOnClickListener {
             if (isPlaying) {
                 mediaPlayer.pause()
@@ -74,16 +114,16 @@ class DetailActivity : AppCompatActivity() {
 
         /**
          * Picasso image event
+         * Initiated in MusicAdapter class with intent and putExtra
          */
         Picasso.get()
             .load(songCover)
-            .resize(400, 355)
+            .resize(450, 375)
             .into(album_imageCover)
-
-
 
         /**
          * Set on click listener event on play and pause button
+         * Implemented play and pause image resource
          */
         mPlayer.setOnClickListener {
             if (isPlaying) {

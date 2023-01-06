@@ -2,6 +2,7 @@ package com.example.musicapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.gugutmusic.R
 import com.example.musicapp.model.view.Communicator
 import com.example.musicapp.model.view.DisplayFragment
 import com.example.musicapp.model.view.SearchFragment
@@ -30,8 +31,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         musicTitle: String) {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_display,
-                DisplayFragment.newInstance(musicTitle))
+            .replace(R.id.fragment_display, DisplayFragment.newInstance(musicTitle))
                 .addToBackStack("")
                 .commit()
         }

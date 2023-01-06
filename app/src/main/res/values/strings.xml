@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicApp</string>
+    <string name="app_name">GugutMusic</string>
     <string name="book_search_btn">Search</string>
     <string name="pop">pop</string>
     <string name="rock">rock</string>

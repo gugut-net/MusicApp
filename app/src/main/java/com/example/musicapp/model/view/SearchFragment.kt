@@ -11,13 +11,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.musicapp.R
-import com.example.musicapp.databinding.SearchFragmentBinding
+import com.example.gugutmusic.R
+import com.example.gugutmusic.databinding.SearchFragmentBinding
 import com.example.musicapp.model.view.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-private const val TAG = "SearchFragment"
 
 class SearchFragment: Fragment() {
     private lateinit var binding: SearchFragmentBinding
@@ -39,13 +38,17 @@ class SearchFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = SearchFragmentBinding.inflate(inflater, container, false)
         initViews()
         return binding.root
     }
 
+    /**
+     * Is call from ViewPager class with the tabs count
+     * and tabs position.
+     */
     private fun initViews() {
         tabLayout = binding.root.findViewById(R.id.tab_layout)
         viewPager = binding.root.findViewById(R.id.view_pager)
@@ -83,7 +86,7 @@ class SearchFragment: Fragment() {
         binding.apply {
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
-                    viewPager!!.currentItem = tab.position
+                    viewPager.currentItem = tab.position
                     musicGenre = tab.text.toString()
                     Log.d(TAG, "onTabSelected: $musicGenre")
                     sendSearchParams()
@@ -98,6 +101,9 @@ class SearchFragment: Fragment() {
         }
     }
 
+    /**
+     * Call from the Communicator Interface
+     */
     private fun sendSearchParams() {
         communicator.sendDataToSearch(musicGenre)
     }
