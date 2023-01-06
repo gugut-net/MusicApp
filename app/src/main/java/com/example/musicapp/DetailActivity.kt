@@ -14,8 +14,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var album_imageCover: ImageView
     private lateinit var mPlayer: ImageButton
-    private var isPlaying = true
     private lateinit var seekBar: SeekBar
+    private lateinit var backArrow: ImageButton
+    private var isPlaying = true
+
     private var int = 0
 
 
@@ -32,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
 
         artist_textView = findViewById(R.id.artist_textView)
         album_imageCover = findViewById(R.id.album_imageView)
+        backArrow = findViewById(R.id.back_arrow)
 //        seekBar = findViewById(R.id.seekBar)
 
         /**
@@ -44,6 +47,14 @@ class DetailActivity : AppCompatActivity() {
 
         val artist = intent.getStringExtra("ALBUM")
         artist_textView.text = artist
+
+
+        backArrow.setOnClickListener {
+            if (isPlaying) {
+                mediaPlayer.pause()
+            }
+            finish()
+        }
 
         /**
          * Intent
@@ -68,6 +79,7 @@ class DetailActivity : AppCompatActivity() {
             .load(songCover)
             .resize(400, 355)
             .into(album_imageCover)
+
 
 
         /**

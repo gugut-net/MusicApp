@@ -65,6 +65,7 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
             intent.putExtra("ALBUM", holder.itemAlbum.text)
             intent.putExtra("SONG_PLAY", dataSet[position].previewUrl)
             intent.putExtra("ALBUM_COVER", dataSet[position].artworkUrl100)
+            intent.putExtra("BACK_ARROW",dataSet[position].backArrow)
             v.context.startActivity(intent)
 
         }
