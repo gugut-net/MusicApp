@@ -6,6 +6,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapp.DetailActivity
@@ -27,6 +28,8 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
                         musicTitleItem.text = musicItem.collectionName
                         musicAlbumItem.text = musicItem.trackName
                         musicArtisItem.text = musicItem.artistName
+                        musicAlbumItem.text = musicItem.songCover
+
                         Picasso.get().load(musicItem.artworkUrl100)
                             .resize(300,300)
                             .into(musicCoverItem)
@@ -34,6 +37,7 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
                 }
         val itemAlbum: TextView = binding.root.findViewById(R.id.music_album_item)
         val itemTitle: TextView = binding.root.findViewById(R.id.music_title_item)
+//        val albumCover: TextView = binding.root.findViewById(R.id.artist_textView)
 
             }
 
@@ -51,10 +55,13 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
         holder.onBind(dataSet[position])
         holder.itemAlbum.text = dataSet[position].collectionName
         holder.itemTitle.text = dataSet[position].trackName
+
+
         holder.itemView.setOnClickListener{v ->
             val intent = Intent(v.context, DetailActivity::class.java)
             intent.putExtra("ALBUM", holder.itemAlbum.text)
             intent.putExtra("SONG_PLAY", dataSet[position].previewUrl)
+            intent.putExtra("ALBUM_COVER", dataSet[position].artworkUrl100)
             v.context.startActivity(intent)
             /*mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
             if (!mediaPlayer.isPlaying) {
