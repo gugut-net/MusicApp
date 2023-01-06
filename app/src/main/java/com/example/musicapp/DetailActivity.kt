@@ -1,12 +1,14 @@
 package com.example.musicapp
 
+import android.R.attr.button
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.musicapp.model.Music
 import com.squareup.picasso.Picasso
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -14,6 +16,11 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var artist_textView: TextView
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var album_imageCover: ImageView
+    private lateinit var mPlayer: ImageButton
+    private var isPlaying = true
+    private lateinit var seekBar: SeekBar
+    private var int = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +33,16 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
 
-
-
-
         artist_textView = findViewById(R.id.artist_textView)
         album_imageCover = findViewById(R.id.album_imageView)
+//        seekBar = findViewById(R.id.seekBar)
+
+        /**
+         * Initiate onclick listener
+         */
+        mPlayer = findViewById(R.id.play_button)
+//        mPlayer.setOnClickListener(listener)
+//        seekBar.setOnSeekBarChangeListener(seekBar)
 
 
         val artist = intent.getStringExtra("ALBUM")
@@ -57,9 +69,26 @@ class DetailActivity : AppCompatActivity() {
          */
         Picasso.get()
             .load(songCover)
-            .resize(300,300)
+            .resize(400, 355)
             .into(album_imageCover)
 
+
+        /**
+         * Set on click listener event on play button
+         */
+        mPlayer.setOnClickListener {
+            if (isPlaying) {
+                mediaPlayer.pause()
+                 int = mediaPlayer.currentPosition
+                isPlaying = false
+                mPlayer.setBackgroundResource(R.drawable.play)
+
+            } else {
+                mediaPlayer.start()
+                isPlaying = true
+                mPlayer.setBackgroundResource(R.drawable.pause)
+            }
+        }
 
     }
 

@@ -37,7 +37,6 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
                 }
         val itemAlbum: TextView = binding.root.findViewById(R.id.music_album_item)
         val itemTitle: TextView = binding.root.findViewById(R.id.music_title_item)
-//        val albumCover: TextView = binding.root.findViewById(R.id.artist_textView)
 
             }
 
@@ -57,22 +56,17 @@ class MusicsAdapter(private val dataSet: MutableList<Music>): RecyclerView.Adapt
         holder.itemTitle.text = dataSet[position].trackName
 
 
+        /**
+         * Set setOnClickListener
+         * intent putExtra to call in DetailActivity
+         */
         holder.itemView.setOnClickListener{v ->
             val intent = Intent(v.context, DetailActivity::class.java)
             intent.putExtra("ALBUM", holder.itemAlbum.text)
             intent.putExtra("SONG_PLAY", dataSet[position].previewUrl)
             intent.putExtra("ALBUM_COVER", dataSet[position].artworkUrl100)
             v.context.startActivity(intent)
-            /*mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-            if (!mediaPlayer.isPlaying) {
-                try {
-                    mediaPlayer.setDataSource(dataSet[position].previewUrl)
-                    mediaPlayer.prepare()
-                    mediaPlayer.start()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }*/
+
         }
     }
 

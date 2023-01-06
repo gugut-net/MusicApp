@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AE98E6DF"
     tools:context=".DetailActivity">
 
     <include
@@ -45,9 +46,10 @@
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="220dp"
-        android:background="@drawable/play"
+        android:background="@drawable/pause"
         android:minWidth="40dp"
         android:minHeight="40dp"
+        android:onClick="mediaplayer"
         android:text="@string/play_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/forward_button"
@@ -88,13 +90,14 @@
 
     <TextView
         android:id="@+id/artist_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="43dp"
         android:layout_marginStart="176dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="177dp"
         android:gravity="center"
         android:text="@string/artist_name"
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
