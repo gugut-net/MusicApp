@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="20dp"
-    app:cardCornerRadius="25dp"
-    android:layout_margin="4dp"
-    android:id="@+id/music_album_cover">
+    app:cardElevation="16dp"
+    app:cardCornerRadius="18dp"
+    android:layout_margin="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/musicAlbum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -54,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/music_title_item"
             app:layout_constraintStart_toEndOf="@+id/music_cover_item"
             app:layout_constraintEnd_toEndOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
